@@ -1,0 +1,17 @@
+from django.shortcuts import render
+from django.http import HttpResponse
+import requests
+
+# Create your views here.
+
+def users(request):
+    #pull data from third party rest api
+    response = requests.get('https://jsonplaceholder.typicode.com/users')
+
+    #convert data into json format
+    users = response.json()
+    #print(users)
+
+    return render(request, "users.html", {'users': users})
+    pass
+
